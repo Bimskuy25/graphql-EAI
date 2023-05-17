@@ -10,13 +10,12 @@ module.exports = {
         }
     },
     Mutation: {
-        async createRecipe(_, { recipeInput: { name, description } }) {
+        async createRecipe(_, { recipeInput: { name, description, foodname } }) {
             const createdRecipe = new Recipe({
                 name: name,
                 description: description,
+                foodname : foodname,
                 createdAt: new Date().toISOString(),
-                thumbsUp: 0,
-                thumbsDown: 0
             });
 
             const res = await createdRecipe.save();
@@ -27,7 +26,7 @@ module.exports = {
             }
         },
         async deleteRecipe(_, { ID }) {
-            const wasDeleted = (await Recipe.deleteOne({ _id: ID })).deletedCoun;
+            const wasDeleted = (await Recipe.deleteOne({ _id: ID })).deletedCount;
             return wasDeleted;
         },
         async editRecipe(_, { ID, recipeInput: { name, description } }) {

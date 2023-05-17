@@ -4,14 +4,15 @@ module.exports = gql`
     type Recipe {
         name: String
         description: String
+        foodname : String
         createdAt: String
-        thumbsUp: Int
-        thumbsDown: Int
     }
         
     input RecipeInput {
         name: String
+        foodname : String
         description: String
+        
     }
         
     type Query {
